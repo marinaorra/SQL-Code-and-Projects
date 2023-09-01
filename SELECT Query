@@ -1,13 +1,6 @@
 -- Using https://www.db-fiddle.com/f/ogAiTgZPjwvDxwVHiVK3Ek/0
 -- Using Statements called Query to give commands to the Data Base
 
---  Select evrth from Users
-SELECT * FROM "User"
-
---  Select evrth from Users with role "Manager"
-select "name"
-from "User"
-where role = 'manager';
 
 --Original Data:
 CREATE TABLE "User" (
@@ -37,4 +30,14 @@ VALUES ('u4','Janine', 'Wilson', '1992-01-01', 'f', 'manager');
 INSERT INTO "User"
 VALUES ('u5', 'Jason', 'Lipton', '1992-01-01', 'm', 'manager');
 
+
+CODE
+
+--  Select evrth from Users
+SELECT * FROM "User"
+
+--  Select evrth from Users with role "Manager"
+select "name"
+from "User"
+where role = 'manager';
 
