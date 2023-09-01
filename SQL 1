@@ -1,1 +1,5 @@
+-- Using https://www.db-fiddle.com/f/ogAiTgZPjwvDxwVHiVK3Ek/0
+-- Using Statements called Query to give commands to the Data Base
 
+--  Select evrth from Users
+SELECT * FROM "User"
