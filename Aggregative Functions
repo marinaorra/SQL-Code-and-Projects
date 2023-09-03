@@ -1,0 +1,25 @@
+--Aggregative functions are for counting the total numbers like sum, count, avg, min, max
+--Count how many employes in total working in the company:
+--Code:
+select count(emp_no) from employees;
+--Result:
+300024
+--Function used: select count()
+
+
+--Get the highest salary available:
+```
+select max(salary) from salaries;
+```
+
+
+
+
+--Get the total amount of salaries paid:
+select count(salary) from salaries;
+
+--What year was the youngest person born in the company?
+select max(birth_date) from employees;
+Result:
+1965-02-01
+
