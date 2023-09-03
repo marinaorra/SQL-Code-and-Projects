@@ -4,3 +4,6 @@
 select first_name, last_name from employees
 where gender = 'F';
 
+--Filtering with multiple search criteria:
+
+
