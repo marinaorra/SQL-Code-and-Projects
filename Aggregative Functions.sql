@@ -1,5 +1,6 @@
 Aggregative functions are for counting the total numbers like sum, count, avg, min, max
---Count how many employes in total working in the company:
+
+Question 1: Count how many employes in total working in the company:
 --Code:
 select count(emp_no) from employees;
 --Result:
@@ -7,8 +8,9 @@ select count(emp_no) from employees;
 --Function used: select count()
 
 
---Get the highest salary available:
-(```sql)select max(salary) from salaries;(```)
+Question 2: Get the highest salary available:
+select max(salary) from salaries;
+
 
 
 
