@@ -18,8 +18,25 @@ SELECT COUNT(income)
 FROM customers
 WHERE age >= 30 and age <= 50 AND income < 50000;
 
+--Or the same but using Between AND function:
+select count(firstname)
+from customers
+where age BETWEEN 30 AND 50 and income<50000;
+
+--Or the same but using Between AND function:
+select *
+from customers
+where age BETWEEN 30 AND 50 and income<50000;
+
+
 -- What is the average income between the ages of 20 and 50? (Excluding 20 and 50)
 -- Result: 59409.926240780098
 SELECT AVG(income)
 FROM customers
 WHERE age > 20 and age < 50;
+
+-- What is the average income between the ages of 20 and 50? (Including 20 and 50)
+SELECT avg(income)
+from customers
+where age BETWEEN 20 and 50;
+--Result: 59361.925908612832
