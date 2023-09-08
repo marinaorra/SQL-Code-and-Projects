@@ -51,6 +51,37 @@ select count(birth_date)
 from employees
 WHERE birth_date<now() - interval '61years';
 
+--Excersises:
+--/*
+* DB: Employees
+* Table: employees
+  
+--Question: How many employees where hired in February?
+SELECT count(emp_no) FROM employees
+where EXTRACT (MONTH FROM hire_date) = 2;
+
+
+--Question: How many employees were born in november?
+select count(emp_no)
+from employees
+WHERE extract(month from birth_date)=11;
+
+
+* Question: Who is the oldest employee?
+SELECT MAX(AGE(birth_date)) FROM employees;
+
+
+/*
+* DB: Store
+* Table: orders
+* Question: How many orders were made in January 2004?
+*/
+
+SELECT COUNT(orderid)
+FROM orders
+WHERE DATE_TRUNC('month', orderdate) = date '2004-01-01';
+
+
 
 
 
