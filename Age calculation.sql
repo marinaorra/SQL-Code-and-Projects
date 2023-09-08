@@ -30,5 +30,29 @@ select date_trunc('month', date '1992/11/13')-- will be 1992/11/01
 
 select date_trunc('year', date '1992/11/13')-- will be 1992/01/01
 
+Examples:
+ * DB: Employees
+ * Table: employees
+ 
+--Question 1:
+Convert the date of birsth of employees to their age:
+SELECT AGE(birth_date),*
+FROM employees
+
+
+--Question 2: Get me all the employees above 60, use the appropriate date functions
+SELECT AGE(birth_date), * FROM employees
+WHERE (
+   EXTRACT (YEAR FROM AGE(birth_date))
+) > 60 ;
+
+--or alternative:
+select count(birth_date)
+from employees
+WHERE birth_date<now() - interval '61years';
+
+
+
+
 
 
