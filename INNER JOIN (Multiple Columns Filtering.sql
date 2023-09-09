@@ -42,4 +42,50 @@ OR (b.from_date + INTERVAL'2 days') =c.from_date
 )
 order by a.emp_no ASC, b.from_date ASC;
 
+Examples:
+/*
+* DB: Store
+* Table: orders
+* Question: Get all orders from customers who live in Ohio (OH), New York (NY) or Oregon (OR) state
+* ordered by orderid
+*/
+--Option 1:
+select*
+from orders as o 
+inner JOIN customers as c on o.customerid = c.customerid
+where c.state in ('OH','NY','OR')
+order by o.orderid;
 
+--Option 2:
+select c.firstname, c.lastname, o.totalamount, c.state, o.orderid
+from orders as o 
+inner JOIN customers as c on o.customerid = c.customerid
+where c.state in ('OH','NY','OR')
+order by o.orderid;
+
+/*
+* DB: Store
+* Table: products
+* Question: Show me the inventory for each product
+*/
+select p.prod_id,p.title, p.actor, p.price, i.quan_in_stock
+from products as p
+left join "public"."inventory" as i on p.prod_id = i.prod_id; --it was no NULL in inventory so inner join will give the same result
+
+/*
+* DB: Employees
+* Table: employees
+* Question: Show me for each employee which department they work in
+*/
+
+--Option1:
+select e.emp_no, e.first_name, e.last_name, d.dept_name
+from employees as e
+inner join dept_emp as de on e.emp_no=de.emp_no
+inner join departments as d on de.dept_no = d.dept_no;
+
+--Option 2:
+SELECT e.first_name, dp.dept_name
+FROM employees AS e
+INNER JOIN dept_emp AS de ON de.emp_no = e.emp_no
+INNER JOIN departments AS dp ON dp.dept_no = de.dept_no
