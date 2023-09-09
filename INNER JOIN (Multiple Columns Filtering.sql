@@ -5,6 +5,8 @@
 --(not including a regular year over year inflation pro-rating)
 --So let's say we know that the title changes followes 2 days after the salary raise and title tab has several keys to jpin with the other tables
 
+--Also "USING" keyword can be used instead of ON in simple joins to clean the code
+(example is down)
 
 select a.emp_no, b.salary, b.from_date,c.title
 from employees as a
@@ -89,3 +91,10 @@ SELECT e.first_name, dp.dept_name
 FROM employees AS e
 INNER JOIN dept_emp AS de ON de.emp_no = e.emp_no
 INNER JOIN departments AS dp ON dp.dept_no = de.dept_no
+
+--Also the same with "USING" keyword
+SELECT e.first_name, dp.dept_name
+FROM employees AS e
+INNER JOIN dept_emp AS de USING (emp_no)
+INNER JOIN departments AS dp using (dept_no);
+
