@@ -4,7 +4,7 @@ Outer joins add data that don't have a match
 You have left join will add the table that doesn't have a match on a table A(which is located on the left side)
 
 So left join will allow us to count everyone who is not a department manager
-
+left join = inner join + any additional records in the table
 
 */
 
