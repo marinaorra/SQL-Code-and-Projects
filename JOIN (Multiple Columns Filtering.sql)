@@ -1,6 +1,0 @@
-select a.emp_no, b.salary, b.from_date,c.title
-from employees as a
-inner join salaries as b on b.emp_no = a.emp_no
-inner JOIN titles as c on c.emp_no = a.emp_no
-AND (b.from_date + INTERVAL'2 days') = c.from_date
-order by a.emp_no ASC, b.from_date ASC;
