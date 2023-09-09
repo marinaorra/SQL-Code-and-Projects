@@ -4,6 +4,8 @@ Outer joins add data that don't have a match
 You have left join will add the table that doesn't have a match on a table A(which is located on the left side)
 
 So left join will allow us to count everyone who is not a department manager
+
+
 */
 
 select*
@@ -60,7 +62,7 @@ order by a.emp_no ASC, b.from_date ASC;
 --In this case we will see all raises the persons had, but bunch of NULLs
 
 so now we can coalsec the titles:
-select a.emp_no, b.salary, COALESCE(c.title, 'no title change')
+select a.emp_no, b.salary, COALESCE(c.title, 'no title change') as "Title change"
 from employees as a
 inner join salaries as b on b.emp_no = a.emp_no
 LEFT JOIN titles as c 
@@ -70,6 +72,11 @@ b.from_date =c.from_date
 OR (b.from_date + INTERVAL'2 days') =c.from_date
 )
 order by a.emp_no ASC, b.from_date ASC;
+
+
+
+
+
 
 
 
