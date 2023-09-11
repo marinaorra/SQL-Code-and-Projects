@@ -100,3 +100,13 @@ inner join departments as d using(dept_no)
 where e.gender='F'
 group by  d.dept_name
 order by dept_name, count(e.emp_no) desc;
+
+--Question 5:
+--What is the avarage salary per department?:
+select d.dept_name, round(avg(salary),2)
+from salaries
+join dept_emp as de using(emp_no)
+join departments as d USING(dept_no)
+group by dept_no, dept_name
+
+
