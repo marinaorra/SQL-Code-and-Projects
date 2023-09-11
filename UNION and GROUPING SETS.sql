@@ -33,7 +33,8 @@ select prod_id as "prod_id", orderlineid, sum(ol.quantity)
 from orderlines as ol
 GROUP by 
 GROUPING sets (
-(),
+(), -- TOTAL ALL,this needed to show the total amount including all nulls (nulls in prod_id+nulls in orderlineid),
+
 (prod_id),
 (orderlineid)
 
