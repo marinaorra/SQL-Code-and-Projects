@@ -67,6 +67,7 @@ from salaries
 join dept_emp as de using(emp_no)
 join departments as d using(dept_no);
 
+--LAST_VALUE Function:
 --Example 2:
 --Let's see the current salary for each individual (assuming that the current salary not nessesaraly will be the max one):
 
@@ -82,11 +83,93 @@ join dept_emp as de using (emp_no)
 JOIN departments as d using (dept_no)
 order BY e.emp_no;
 
+--Min/Max Function:
+Example 3:
+--Show how the current price of the prices states vs the cheapest price in the category itself:
+select prod_id, price, category, 
+min(price) over(PARTITION by category) as "Cheapest price"
+from products;
+
+--SUM Function:
+
+SELECT 
+o.orderid,
+o.customerid,
+o.netamount,
+sum (o.netamount) over( PARTITION by o.customerid) as "cutomer sum"
+from orders as o
+order by o.customerid
+
+--Or to get an acumulative sum of the previous row it will be:
+SELECT 
+o.orderid,
+o.customerid,
+o.netamount,
+sum (o.netamount) over( PARTITION by o.customerid
+order by o.orderid)
+as "cutomer sum"
+from orders as o
+order by o.customerid
+
+
+--Row_Number--
+  --If i want to see what is the position of the product in my category i can use row number:
+  
+SELECT 
+prod_id, price, category,
+row_number() over(
+PARTITION BY category
+order by price
+)
+as "position in the category"
+from products;
+
+/*
+*  Show the population per continent
+*  Database: World
+*  Table: Country
+*/
+
+--Option 1:
+SELECT
+  DISTINCT continent,
+  SUM(population) OVER w1 as"continent population"
+FROM country 
+WINDOW w1 AS( PARTITION BY continent );
 
 
 
 
+--Option 2:
+select distinct continent,
+sum(population) over (PARTITION BY continent)
+as "total population"
+from country;
 
+
+
+/*
+*  To the previous query add on the ability to calculate the percentage of the world population
+*  What that means is that you will divide the population of that continent by the total population and multiply by 100 to get a percentage.
+*  Make sure you convert the population numbers to float using `population::float` otherwise you may see zero pop up
+*  Try to use CONCAT AND ROUND to make the data look pretty
+*
+*  Database: World
+*  Table: Country
+*/
+
+SELECT
+  DISTINCT continent,
+  SUM(population) OVER w1 as"continent population",
+  CONCAT( 
+      ROUND( 
+          ( 
+            SUM( population::float4 ) OVER w1 / 
+            SUM( population::float4 ) OVER() 
+          ) * 100    
+      ),'%' ) as "percentage of population"
+FROM country 
+WINDOW w1 AS( PARTITION BY continent );
 
 
 
