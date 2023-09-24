@@ -21,6 +21,10 @@ Window_function(arg1,arg2,..) OVER (  --takes arguments over the suset of data
 --Example 1:
 --Let's see the maximum salary for each individual:
 select
+
+
+
+  
 *,
 MAX (salary) OVER()
 From salaries; -- so this will show each and every salary per employee vs max salary
@@ -171,7 +175,24 @@ SELECT
 FROM country 
 WINDOW w1 AS( PARTITION BY continent );
 
+/*
+*  Count the number of towns per region
+*
+*  Database: France
+*  Table: Regions (Join + Window function)
+*/
 
+SELECT 
+DISTINCT r.id, 
+r."name", 
+COUNT(t.id) OVER (
+    PARTITION BY r.id
+    ORDER BY r."name"
+) AS "# of towns"
+FROM regions AS r
+JOIN departments AS d ON r.code = d.region 
+JOIN towns AS t ON d.code = t.department
+ORDER BY r.id;
 
 
 
